@@ -24,5 +24,11 @@ Modules
 --------
 
 - Map
+- Marker
+- Polyline
+- Circle
+- Rectangle
+- Polygon
+- OverlayView
 
 Check out the `examples` directory to see how these modules can be used.
