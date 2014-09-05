@@ -36,7 +36,7 @@ var GoogleMapWithMarkers = React.createClass({
 
   renderMarkers: function(state, i) {
     return (
-      <Marker position={state.position} key={i} onClick={this.handleLogEvent.bind(null, 'onClick')} />
+      <Marker position={state.position} key={i} />
       );
   },
 
@@ -60,7 +60,7 @@ var GoogleMapWithMarkers = React.createClass({
 
   handleCenterChange: function(map) {
     var center = map.getCenter();
-    this.setState({zoom: center});
+    this.setState({center: center});
   }
 });
 
