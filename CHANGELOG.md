@@ -1,6 +1,7 @@
 ## next
 
 - Expose Map PropType validators.
+- Added PropType validators to components.
 
 ## 0.1.2
 

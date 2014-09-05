@@ -41,6 +41,7 @@ var ReactMapComponent = {
    *
    * @param {string} constructorName
    * @param {function?} constructorFn
+   * @return {ReactComponent}
    */
   create: function(constructorName, constructorFn) {
     return React.createClass({

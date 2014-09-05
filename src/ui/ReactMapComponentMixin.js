@@ -1,7 +1,9 @@
 "use strict";
 
+var merge = require('react/lib/merge');
 var invariant = require('react/lib/invariant');
 var MapOption = require('./MapOption');
+var MapOptionConfig = require('./MapOptionConfig');
 var MapEvent = require('./MapEvent');
 var GoogleMapsAPI = require('../GoogleMapsAPI');
 var GetterProxy = require('../utils/GetterProxy');
@@ -15,6 +17,8 @@ var resetMapOptionObject = {map: null};
  * GoogleMaps React component mixin
  */
 var ReactMapComponentMixin = {
+  propTypes: merge(MapOptionConfig.Options),
+
   shouldComponentUpdate: function() {
     return this.__shouldComponentUpdate;
   },
