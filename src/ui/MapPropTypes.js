@@ -45,3 +45,8 @@ exports.Symbol = React.PropTypes.object;
  * Checks whether a prop provides a `GoogleMaps.MarkerShape`
  */
 exports.MarkerShape = React.PropTypes.object;
+
+/**
+ * Checks whether a prop provides a `GoogleMaps.MapPanes`
+ */
+exports.MapPanes = React.PropTypes.oneOf(['floatPane', 'mapPane', 'markerLayer', 'overlayLayer', 'overlayMouseTarget']);

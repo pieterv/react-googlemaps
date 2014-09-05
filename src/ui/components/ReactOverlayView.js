@@ -5,6 +5,7 @@ var React = require('react');
 var cloneWithProps = require('react/lib/cloneWithProps');
 var merge = require('react/lib/merge');
 var GoogleMapsAPI = require('../../GoogleMapsAPI');
+var MapPropTypes = require('../MapPropTypes');
 
 function MapOverlayView(props) {
   this.props = props;
@@ -49,7 +50,7 @@ var ReactOverlayView = React.createClass({
   displayName: 'OverlayView',
 
   propTypes: {
-    mapPane: React.PropTypes.oneOf(['overlayLayer'])
+    mapPane: MapPropTypes.MapPanes.isRequired
   },
 
   getDefaultProps: function() {

@@ -5,6 +5,7 @@ var React = require('react');
 var cloneWithProps = require('react/lib/cloneWithProps');
 var keyMirror = require('react/lib/keyMirror');
 var ReactMapComponents = require('../../ReactMapComponents');
+var MapPropTypes = require('../MapPropTypes');
 
 var GoogleMapsMap = ReactMapComponents.Map;
 
@@ -16,6 +17,8 @@ var MapLifeCycle = keyMirror({
 
 var ReactMap = React.createClass({
   propTypes: {
+    zoom: React.PropTypes.number.isRequired,
+    center: MapPropTypes.LatLng.isRequired,
     width: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string]),
     height: React.PropTypes.oneOfType([React.PropTypes.number, React.PropTypes.string])
   },
