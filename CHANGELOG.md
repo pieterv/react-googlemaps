@@ -5,7 +5,7 @@
 
 ## 0.1.2
 
-- Bugfix: update `OverlayView` with new props are passed.
+- Bugfix: update `OverlayView` when new props are passed.
 
 ## 0.1.1
 
