@@ -64,4 +64,4 @@ var GoogleMapWithMarkers = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapWithMarkers />, document.body);
+React.renderComponent(<GoogleMapWithMarkers />, document.getElementById('example'));
