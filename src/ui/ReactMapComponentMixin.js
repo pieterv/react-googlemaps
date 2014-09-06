@@ -29,7 +29,21 @@ var ReactMapComponentMixin = {
     this.__eventCache = {};
     this.__node = this.constructGoogleMapsClass(this.props);
     this.__nodeInterface = new GetterProxy(this.__node);
-    this.flushEventChanges(MapEvent.extractEventsFromProps(this.props));
+
+    var nextProps = this.props;
+    var mapEventChanges = {};
+    for (var propKey in nextProps) {
+      var nextProp = nextProps[propKey];
+      if (!nextProps.hasOwnProperty(propKey) ||
+        !MapEvent.isStandardName[propKey] ||
+        !nextProp) {
+        continue;
+      }
+
+      mapEventChanges[propKey] = nextProp;
+    }
+
+    this.flushEventChanges(mapEventChanges);
   },
 
   componentDidUpdate: function(prevProps) {

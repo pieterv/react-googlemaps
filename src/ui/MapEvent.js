@@ -82,20 +82,6 @@ var MapEvent = {
 
   getDispatcher: {},
 
-  extractEventsFromProps: function(props) {
-    var events = {};
-
-    for (var propName in props) {
-      if (!MapEvent.isStandardName[propName]) {
-        continue;
-      }
-
-      events[propName] = props[propName];
-    }
-
-    return events;
-  },
-
   createEventDispatcher: function(eventName, instance) {
     var executeDispatch = MapEvent.getDispatcher[eventName];
     return function listener(event) {
