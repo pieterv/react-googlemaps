@@ -14,6 +14,11 @@ var GetterProxy = require('../utils/GetterProxy');
 var resetMapOptionObject = {map: null};
 
 /**
+ * Empty props cache
+ */
+var emptyPropsCache = {};
+
+/**
  * GoogleMaps React component mixin
  */
 var ReactMapComponentMixin = {
@@ -27,23 +32,9 @@ var ReactMapComponentMixin = {
     this.__shouldComponentUpdate = true;
     this.__dirtyOptions = {};
     this.__eventCache = {};
-    this.__node = this.constructGoogleMapsClass(this.props);
+    this.__node = this.constructGoogleMapsClass();
     this.__nodeInterface = new GetterProxy(this.__node);
-
-    var nextProps = this.props;
-    var mapEventChanges = {};
-    for (var propKey in nextProps) {
-      var nextProp = nextProps[propKey];
-      if (!nextProps.hasOwnProperty(propKey) ||
-        !MapEvent.isStandardName[propKey] ||
-        !nextProp) {
-        continue;
-      }
-
-      mapEventChanges[propKey] = nextProp;
-    }
-
-    this.flushEventChanges(mapEventChanges);
+    this._updateMapProperties(emptyPropsCache);
   },
 
   componentDidUpdate: function(prevProps) {

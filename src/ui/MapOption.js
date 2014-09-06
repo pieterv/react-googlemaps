@@ -67,20 +67,6 @@ var MapOption = {
    */
   getOptionName: {},
 
-  extractOptionsFromProps: function(props) {
-    var options = {};
-
-    for (var propName in props) {
-      if (!MapOption.isStandardName[propName]) {
-        continue;
-      }
-
-      options[MapOption.getOptionName[propName]] = props[propName];
-    }
-
-    return options;
-  },
-
   injection: MapOptionInjection
 };
 

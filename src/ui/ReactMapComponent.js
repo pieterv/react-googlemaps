@@ -3,7 +3,6 @@
 var React = require('react');
 var invariant = require('react/lib/invariant');
 var GoogleMapsAPI = require('../GoogleMapsAPI');
-var MapOption = require('./MapOption');
 var ReactMapComponentMixin = require('./ReactMapComponentMixin');
 
 /**
@@ -26,10 +25,8 @@ function createGoogleMapClassConstructor(constructorName) {
 
   invariant(Constructor, 'Google Maps class of `%s` does not exist', constructorName);
 
-  return function(props) {
-    var options = MapOption.extractOptionsFromProps(props);
-
-    return new Constructor(options);
+  return function() {
+    return new Constructor();
   }
 }
 

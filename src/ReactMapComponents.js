@@ -4,15 +4,13 @@ var mergeInto = require('react/lib/mergeInto');
 var mapObject = require('react/lib/mapObject');
 var GoogleMapsAPI = require('./GoogleMapsAPI');
 var ReactMapComponent = require('./ui/ReactMapComponent');
-var MapOption = require('./ui/MapOption');
 
 function createMapComponentClass(constructorFn, constructorName) {
   return ReactMapComponent.create(constructorName, constructorFn);
 }
 
-function constructGoogleMapsMapClass(props) {
-  var options = MapOption.extractOptionsFromProps(props);
-  return new GoogleMapsAPI.Map(props.mapDiv, options);
+function constructGoogleMapsMapClass() {
+  return new GoogleMapsAPI.Map(this.props.mapDiv);
 }
 
 /**
