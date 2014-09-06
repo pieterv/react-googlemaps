@@ -2,6 +2,7 @@
 
 - Expose Map PropType validators.
 - Added PropType validators to components.
+- Map options are no longer passed to the node constructor and are rather, set directly after construction.
 
 ## 0.1.2
 
