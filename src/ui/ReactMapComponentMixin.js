@@ -39,11 +39,27 @@ var ReactMapComponentMixin = {
     this.__eventCache = {};
     this.__node = this.constructGoogleMapsClass();
     this.__nodeInterface = new GetterProxy(this.__node);
+    this._setInitialMapProperties();
     this._updateMapProperties(emptyPropsCache);
   },
 
   componentDidUpdate: function(prevProps) {
     this._updateMapProperties(prevProps);
+  },
+
+  _setInitialMapProperties: function() {
+    var initialMapOptions = {};
+    var props = this.props;
+    for (var propKey in props) {
+      var optionName = MapOption.getInitialOptionName[propKey];
+      if (!props.hasOwnProperty(propKey) || !optionName) {
+        continue;
+      }
+
+      initialMapOptions[optionName] = props[propKey];
+    }
+
+    this.flushOptionChanges(initialMapOptions);
   },
 
   _updateMapProperties: function(lastProps) {

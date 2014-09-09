@@ -2,6 +2,10 @@
 
 var invariant = require('react/lib/invariant');
 
+function createInitialOptionName(name) {
+  return 'initial' + name.charAt(0).toUpperCase() + name.slice(1)
+}
+
 var MapOptionInjection = {
 
   /**
@@ -36,6 +40,9 @@ var MapOptionInjection = {
         MapOptionNames.hasOwnProperty(propName) ?
           MapOptionNames[propName] :
           propName;
+
+      MapOption.getInitialOptionName[createInitialOptionName(propName)] =
+        MapOption.getOptionName[propName];
     }
   }
 };
@@ -66,6 +73,12 @@ var MapOption = {
    * @type {Object}
    */
   getOptionName: {},
+
+  /**
+   * Mapping from normalized initial names to option on Map class instances.
+   * @type {Object}
+   */
+  getInitialOptionName: {},
 
   injection: MapOptionInjection
 };

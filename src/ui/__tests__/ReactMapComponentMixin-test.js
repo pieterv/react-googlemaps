@@ -31,11 +31,34 @@ describe('ReactMapComponentMixin', function() {
         map: 'map'
       };
 
+      MapOption.getInitialOptionName = {
+        initialOption1: 'option1',
+        initialOption2: 'option2',
+        initialOption3: 'option3'
+      };
+
       Component = React.createClass({
         mixins: [ReactMapComponentMixin],
         constructGoogleMapsClass: jest.genMockFn().mockReturnValue(node),
         render: function() {return null}
       });
+    });
+
+    it('should add all initial options on mount', function() {
+      var ReactTestUtils = require('react/lib/ReactTestUtils');
+      var noop = jest.genMockFn();
+
+      ReactTestUtils.renderIntoDocument(
+        <Component
+          initialOption1={noop}
+          initialOption2={null}
+          initialOption3={'hi'}
+          initialNotOption={noop} />
+      );
+
+      expect(node.setOptions.mock.calls.length).toBe(2);
+      expect(node.setOptions).toBeCalledWith({option1: noop, option2: null, option3: 'hi'});
+      expect(node.setOptions).toBeCalledWith({});
     });
 
     it('should add all options on mount', function() {
@@ -50,7 +73,8 @@ describe('ReactMapComponentMixin', function() {
           notOption={noop} />
       );
 
-      expect(node.setOptions.mock.calls.length).toBe(1);
+      expect(node.setOptions.mock.calls.length).toBe(2);
+      expect(node.setOptions).toBeCalledWith({});
       expect(node.setOptions).toBeCalledWith({option1: noop, option2: null, option3: 'hi'});
     });
 
