@@ -19,6 +19,11 @@ var resetMapOptionObject = {map: null};
 var emptyPropsCache = {};
 
 /**
+ * Empty function to be provided to event handlers
+ */
+function noop() {}
+
+/**
  * GoogleMaps React component mixin
  */
 var ReactMapComponentMixin = {
@@ -45,8 +50,10 @@ var ReactMapComponentMixin = {
     var nextProps = this.props;
     var mapOptionChanges = {};
     var mapEventChanges = {};
-
     var propKey;
+
+    // Remove any options or events that no longer
+    // exist in the new set of props.
     for (propKey in lastProps) {
       if (nextProps.hasOwnProperty(propKey) ||
         !lastProps.hasOwnProperty(propKey)) {
@@ -60,6 +67,7 @@ var ReactMapComponentMixin = {
       }
     }
 
+    // Add any changed options or new events.
     for (propKey in nextProps) {
       var nextProp = nextProps[propKey];
       var lastProp = lastProps[propKey];
@@ -75,7 +83,24 @@ var ReactMapComponentMixin = {
       }
     }
 
-    // TODO: Deal with adding noop event listeners to props with side effects
+    // Added check of changed options that have side effect events,
+    // if they don't have a handler then add a noop one for this event
+    // to trigger the side effect dirty checking.
+    for (propKey in mapOptionChanges) {
+      var sideEffectEvent = MapEvent.getOptionSideEffectEvent[propKey];
+      if (!mapOptionChanges.hasOwnProperty(propKey) || !sideEffectEvent || nextProps[sideEffectEvent]) {
+        continue;
+      }
+
+      var hasNextProp = nextProps[propKey] != null;
+      var hasLastProp = lastProps[propKey] != null;
+
+      if (hasLastProp && !hasNextProp) {
+        mapEventChanges[sideEffectEvent] = null;
+      } else if (!hasLastProp && hasNextProp) {
+        mapEventChanges[sideEffectEvent] = noop;
+      }
+    }
 
     this.flushOptionChanges(mapOptionChanges);
     this.flushEventChanges(mapEventChanges);

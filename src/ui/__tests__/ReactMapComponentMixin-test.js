@@ -10,6 +10,7 @@ describe('ReactMapComponentMixin', function() {
     beforeEach(function() {
       var ReactMapComponentMixin = require('../ReactMapComponentMixin');
       var MapOption = require('../MapOption');
+      var MapEvent = require('../MapEvent');
       var React = require('react');
 
       node = {
@@ -155,6 +156,7 @@ describe('ReactMapComponentMixin', function() {
 
     beforeEach(function() {
       var ReactMapComponentMixin = require('../ReactMapComponentMixin');
+      var MapOption = require('../MapOption');
       var MapEvent = require('../MapEvent');
       var React = require('react');
 
@@ -162,15 +164,27 @@ describe('ReactMapComponentMixin', function() {
         setOptions: jest.genMockFn()
       };
 
+      MapOption.isStandardName = {
+        sideEffectOption: true
+      };
+      MapOption.getOptionName = {
+        sideEffectOption: 'sideEffectOption'
+      };
+
       MapEvent.isStandardName = {
         event1: true,
         event2: true,
-        event3: true
+        event3: true,
+        sideEffectEvent: true
       };
       MapEvent.getEventName = {
         event1: 'googleMapsEvent1',
         event2: 'googleMapsEvent2',
-        event3: 'googleMapsEvent3'
+        event3: 'googleMapsEvent3',
+        sideEffectEvent: 'googleMapsEvent4'
+      };
+      MapEvent.getOptionSideEffectEvent = {
+        sideEffectOption: 'sideEffectEvent'
       };
       MapEvent.createEventDispatcher.mockReturnValue(jest.genMockFn());
 
@@ -190,12 +204,14 @@ describe('ReactMapComponentMixin', function() {
         <Component
           event1={noop}
           event2={noop}
+          sideEffectOption={true}
           notEvent={noop} />
       );
 
-      expect(GoogleMapsAPI.event.addListener.mock.calls.length).toBe(2);
+      expect(GoogleMapsAPI.event.addListener.mock.calls.length).toBe(3);
       expect(GoogleMapsAPI.event.addListener).toBeCalledWith(node, 'googleMapsEvent1', jasmine.any(Function));
       expect(GoogleMapsAPI.event.addListener).toBeCalledWith(node, 'googleMapsEvent2', jasmine.any(Function));
+      expect(GoogleMapsAPI.event.addListener).toBeCalledWith(node, 'googleMapsEvent4', jasmine.any(Function));
     });
 
     it('should add new events on update', function() {
@@ -215,12 +231,38 @@ describe('ReactMapComponentMixin', function() {
       React.renderComponent(
         <Component
           event1={noop}
-          event2={noop} />,
+          event2={noop}
+          sideEffectOption={true} />,
         container
       );
 
-      expect(GoogleMapsAPI.event.addListener.mock.calls.length).toBe(1);
+      expect(GoogleMapsAPI.event.addListener.mock.calls.length).toBe(2);
       expect(GoogleMapsAPI.event.addListener).toBeCalledWith(node, 'googleMapsEvent2', jasmine.any(Function));
+      expect(GoogleMapsAPI.event.addListener).toBeCalledWith(node, 'googleMapsEvent4', jasmine.any(Function));
+    });
+
+    it('should not change events when side effect option is dirty', function() {
+      var React = require('react');
+      var GoogleMapsAPI = require('../../GoogleMapsAPI');
+
+      var container = document.createElement('div');
+      var instance = React.renderComponent(
+        <Component
+          sideEffectOption={true} />,
+        container
+      );
+
+      GoogleMapsAPI.event.addListener.mockClear();
+
+      instance.__dirtyOptions['sideEffectOption'] = true;
+      React.renderComponent(
+        <Component
+          sideEffectOption={true} />,
+        container
+      );
+
+      expect(GoogleMapsAPI.event.addListener).not.toBeCalled();
+      expect(GoogleMapsAPI.event.removeListener).not.toBeCalled();
     });
 
     it('should remove old events on update', function() {
@@ -235,7 +277,8 @@ describe('ReactMapComponentMixin', function() {
         <Component
           event1={noop}
           event2={noop}
-          notEvent={noop} />,
+          notEvent={noop}
+          sideEffectOption={true} />,
         container
       );
 
@@ -246,9 +289,8 @@ describe('ReactMapComponentMixin', function() {
         container
       );
 
-      expect(GoogleMapsAPI.event.removeListener.mock.calls.length).toBe(1);
+      expect(GoogleMapsAPI.event.removeListener.mock.calls.length).toBe(2);
       expect(GoogleMapsAPI.event.removeListener).toBeCalledWith(EventReturn);
-      GoogleMapsAPI.event.removeListener.mockClear();
     });
 
     it('should remove all events on unmount', function() {
@@ -263,13 +305,14 @@ describe('ReactMapComponentMixin', function() {
         <Component
           event1={noop}
           event2={noop}
-          notEvent={noop} />,
+          notEvent={noop}
+          sideEffectOption={true} />,
         container
       );
 
       React.unmountComponentAtNode(container);
 
-      expect(GoogleMapsAPI.event.removeListener.mock.calls.length).toBe(2);
+      expect(GoogleMapsAPI.event.removeListener.mock.calls.length).toBe(3);
       expect(GoogleMapsAPI.event.removeListener).toBeCalledWith(EventReturn);
     });
   });

@@ -40,7 +40,7 @@ var MapEventInjection = {
         MapEvent.getEventName[eventName] = EventConfig.name || eventName;
         MapEvent.getDispatcher[eventName] = PluginModule.executeDispatch;
         if (EventConfig.effects) {
-          MapEvent.getEventSideEffectOption[eventName] = EventConfig.effects;
+          MapEvent.getOptionSideEffectEvent[EventConfig.effects] = eventName;
         }
       }
     }
@@ -63,23 +63,27 @@ var MapEventInjection = {
 var MapEvent = {
 
   /**
-   * Checks whether a option name is a standard option.
+   * Checks whether an event name is a standard event.
    * @type {Object}
    */
   isStandardName: {},
 
   /**
-   * Checks whether a option name is a standard option.
+   * Mapping from side effect options to normalized event names.
    * @type {Object}
    */
-  getEventSideEffectOption: {},
+  getOptionSideEffectEvent: {},
 
   /**
-   * Mapping from normalized names to option on Map class instances.
+   * Mapping from normalized event names to GoogleMaps event name.
    * @type {Object}
    */
   getEventName: {},
 
+  /**
+   * Mapping over normalized event names to event dispatchers
+   * @type {Object}
+   */
   getDispatcher: {},
 
   createEventDispatcher: function(eventName, instance) {
