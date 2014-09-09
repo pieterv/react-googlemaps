@@ -23,11 +23,10 @@ var GoogleMapWithMarkers = React.createClass({
     return (
       <Map
         zoom={this.state.zoom}
-        center={this.state.center}
+        initialCenter={this.state.center}
         width={700}
         height={700}
         onZoomChange={this.handleZoomChange}
-        onCenterChange={this.handleCenterChange}
         onClick={this.handleMapClick}>
         {this.state.markers.map(this.renderMarkers)}
       </Map>
@@ -56,11 +55,6 @@ var GoogleMapWithMarkers = React.createClass({
     if (this.state.zoom > zoom) {
       this.setState({zoom: zoom});
     }
-  },
-
-  handleCenterChange: function(map) {
-    var center = map.getCenter();
-    this.setState({center: center});
   }
 });
 
