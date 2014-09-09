@@ -31,4 +31,4 @@ Components
 - Polygon
 - OverlayView
 
-Check out the `[examples](https://github.com/pieterv/react-googlemaps/tree/master/examples)` directory to see how these modules can be used.
+Check out the [`examples`](https://github.com/pieterv/react-googlemaps/tree/master/examples) directory to see how these modules can be used.
