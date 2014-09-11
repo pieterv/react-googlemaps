@@ -31,12 +31,16 @@
     "react": ">=0.11.0"
   },
   "peerDependencies": {
-    "react": ">=0.11.0"
+    "react": ">=0.11.0",
+    "reactify": ">=0.11.0"
   },
   "jest": {
     "scriptPreprocessor": "<rootDir>/preprocessor.js",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
     ]
+  },
+  "browserify": {
+    "transform": ["reactify"]
   }
 }
