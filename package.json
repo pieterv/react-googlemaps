@@ -1,6 +1,6 @@
 {
   "name": "react-googlemaps",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A declarative React interface to Google Maps",
   "keywords": [
     "react",

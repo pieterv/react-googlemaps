@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Added reactify to package.json for browserify support.
+
 ## 0.2.0
 
 - Expose Map PropType validators.
