@@ -8,7 +8,7 @@ var Map = ReactGoogleMaps.Map;
 var Marker = ReactGoogleMaps.Marker;
 var LatLng = GoogleMapsAPI.LatLng;
 
-var GoogleMapWithMarkers = React.createClass({
+var GoogleMapMarkers = React.createClass({
   getInitialState: function() {
     return {
       center: new LatLng(-34.397, 150.644),
@@ -22,11 +22,11 @@ var GoogleMapWithMarkers = React.createClass({
   render: function() {
     return (
       <Map
-        zoom={this.state.zoom}
-        initialCenter={this.state.center}
+        initialZoom={this.state.zoom}
+        center={this.state.center}
+        onCenterChange={this.handleCenterChange}
         width={700}
         height={700}
-        onZoomChange={this.handleZoomChange}
         onClick={this.handleMapClick}>
         {this.state.markers.map(this.renderMarkers)}
       </Map>
@@ -47,15 +47,17 @@ var GoogleMapWithMarkers = React.createClass({
     var markers = React.addons
       .update(this.state.markers, {$push: [marker]});
 
-    this.setState({markers: markers});
+    this.setState({
+      markers: markers,
+      center: mapEvent.latLng
+    });
   },
 
-  handleZoomChange: function(map) {
-    var zoom = map.getZoom();
-    if (this.state.zoom > zoom) {
-      this.setState({zoom: zoom});
-    }
+  handleCenterChange: function(map) {
+    this.setState({
+      center: map.getCenter()
+    });
   }
 });
 
-React.renderComponent(<GoogleMapWithMarkers />, document.getElementById('example'));
+React.renderComponent(<GoogleMapMarkers />, document.getElementById('example'));
