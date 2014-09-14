@@ -3,6 +3,12 @@ React Google Maps [![Build Status](https://travis-ci.org/pieterv/react-googlemap
 
 A declarative React interface to Google Maps.
 
+Check it out:
+
+* [Example usage](examples)
+* [API docs](docs/api.md)
+* [What's new](CHANGELOG.md)
+
 Important Notes
 ---------------
 
@@ -13,22 +19,51 @@ Installation
 ------------
 
 ```sh
-npm install react-googlemaps
+npm install react-googlemaps --save
 ```
 
 This library is written with CommonJS modules. If you are using
 browserify, webpack, or similar, you can consume it like anything else
 installed from npm.
 
-Components
---------
+Usage
+-----
 
-- Map
-- Marker
-- Polyline
-- Circle
-- Rectangle
-- Polygon
-- OverlayView
+```js
+var React = require('react');
+var ReactGoogleMaps = require('react-googlemaps');
+var GoogleMapsAPI = window.google.maps;
 
-Check out the [`examples`](https://github.com/pieterv/react-googlemaps/tree/master/examples) directory to see how these modules can be used.
+var Map = ReactGoogleMaps.Map;
+var Marker = ReactGoogleMaps.Marker;
+var OverlayView = ReactGoogleMaps.OverlayView;
+
+function handleClick(e) {
+  console.log('Clicked at position', e.latlng);
+}
+
+React.renderComponent(
+  <Map
+    initialZoom={10}
+    initialCenter={new GoogleMapsAPI.LatLng(-41.2864, 174.7762)}>
+
+    <Marker
+      onClick={handleClick}
+      position={new GoogleMapsAPI.LatLng(-41.2864, 174.7762)} />
+
+    <OverlayView
+      style={{backgroundColor: '#fff'}}
+      position={new GoogleMapsAPI.LatLng(-41.2864, 174.7762)}>
+      <p>Some content</p>
+    </OverlayView>
+  </Map>,
+  mountNode
+);
+```
+
+Checkout the [API docs](docs/api.md) or the [`examples`](examples) directory for more detailed usage.
+
+License
+-------
+
+Licensed under MIT. [Full license here »](LICENSE)

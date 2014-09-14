@@ -1,4 +1,4 @@
-### React Layers Examples
+### React Google Maps Examples
 
 In order to try out the examples, you need to follow these steps:
 
