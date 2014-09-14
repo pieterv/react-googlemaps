@@ -25,7 +25,7 @@ var SimpleEventPlugin = {
   executeDispatch: function(event, eventName, instance) {
     var listener = instance.props[eventName];
 
-    return listener(instance.getNodeInterface());
+    return listener(instance.getMapNode());
   }
 };
 

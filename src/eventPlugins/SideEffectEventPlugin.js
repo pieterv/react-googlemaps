@@ -88,7 +88,7 @@ var SideEffectEventPlugin = {
 
     var listener = instance.props[eventName];
     instance.queueDirtyCheck();
-    var returnVal = listener(instance.getNodeInterface());
+    var returnVal = listener(instance.getMapNode());
     instance.flushDirtyChangesTo(effects);
 
     return returnVal;

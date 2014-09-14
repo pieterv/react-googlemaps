@@ -6,7 +6,6 @@ var MapOption = require('./MapOption');
 var MapOptionConfig = require('./MapOptionConfig');
 var MapEvent = require('./MapEvent');
 var GoogleMapsAPI = require('../GoogleMapsAPI');
-var GetterProxy = require('../utils/GetterProxy');
 
 /**
  * Cached reset map option object
@@ -38,7 +37,6 @@ var ReactMapComponentMixin = {
     this.__dirtyOptions = {};
     this.__eventCache = {};
     this.__node = this.constructGoogleMapsClass();
-    this.__nodeInterface = new GetterProxy(this.__node);
     this._setInitialMapProperties();
     this._updateMapProperties(emptyPropsCache);
   },
@@ -150,7 +148,6 @@ var ReactMapComponentMixin = {
       this.flushOptionChanges(resetMapOptionObject);
     }
     this.__node = null;
-    this.__nodeInterface = null;
   },
 
   putListener: function(eventName) {
@@ -189,8 +186,8 @@ var ReactMapComponentMixin = {
     this.__dirtyOptions = {};
   },
 
-  getNodeInterface: function() {
-    return this.__nodeInterface;
+  getMapNode: function() {
+    return this.__node;
   }
 };
 
