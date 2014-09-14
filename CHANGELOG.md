@@ -1,3 +1,8 @@
+## next
+
+- Removed `getNodeInterface` and added `getMapNode` which returns the real internal map class instance rather than an interface.
+- Added API docs and more detailed examples.
+
 ## 0.2.1
 
 - Added reactify to package.json for browserify support.
