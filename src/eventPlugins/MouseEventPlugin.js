@@ -43,7 +43,7 @@ var MouseEventPlugin = {
   executeDispatch: function(event, eventName, instance) {
     var listener = instance.props[eventName];
 
-    return listener(event, instance.getNodeInterface());
+    return listener(event, instance.getMapNode());
   }
 };
 
