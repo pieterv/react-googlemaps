@@ -6,6 +6,7 @@ var MapEvent = require('./MapEvent');
 var MapOptionConfig = require('./MapOptionConfig');
 var ReactMap = require('./components/ReactMap');
 var ReactOverlayView = require('./components/ReactOverlayView');
+var ReactFrag = require('./components/ReactFrag');
 var SimpleEventPlugin = require('../eventPlugins/SimpleEventPlugin');
 var MouseEventPlugin = require('../eventPlugins/MouseEventPlugin');
 var SideEffectEventPlugin = require('../eventPlugins/SideEffectEventPlugin');
@@ -26,7 +27,8 @@ function inject() {
 
   ReactInjection.MapComponents.injectComponentClasses({
     Map: ReactMap,
-    OverlayView: ReactOverlayView
+    OverlayView: ReactOverlayView,
+    Frag: ReactFrag
   });
 
   ReactInjection.MapOption.injectMapOptionConfig(MapOptionConfig);

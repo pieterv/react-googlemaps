@@ -9,6 +9,7 @@ API
   - [`Circle`](#circle)
   - [`Rectangle`](#rectangle)
   - [`OverlayView`](#overlayview)
+  - [`Frag`](#frag)
 - [PropTypes](#proptypes)
 
 # Components
@@ -160,6 +161,26 @@ Uses the GoogleMaps OverlayView to render arbitrary React DOM elements into the 
 * `mapPane` - Map pane layer to add the view to. One of the  [`GoogleMapsAPI.MapPanes`](https://developers.google.com/maps/documentation/javascript/reference#MapPanes) types.
 
 [GoogleMaps OverlayView](https://developers.google.com/maps/documentation/javascript/reference#OverlayView) docs.
+
+## Frag
+
+```js
+var MarkerCollection = React.createClass({
+  render: function() {
+    return (
+      <Frag map={this.props.map}>
+        <Marker {...props} />
+        <Marker {...props} />
+        <Marker {...props} />
+      </Frag>
+      );
+  }
+});
+```
+
+Frag is a helper component for creating reusable React GoogleMap components. This component has no functionality or output, it just allows you to return multiple components from a custom components `render` function.
+
+The only prop required is the `map` prop (the GoogleMap instance), this is automatically passed down to all direct children of the `Map` component but will need to be manually set if you use `Frag` inside a custom component. The `Frag` component will then pass the `map` prop down to all of its direct children.
 
 # PropTypes
 

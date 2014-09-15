@@ -7,6 +7,7 @@ var keyMirror = require('react/lib/keyMirror');
 var ReactMapComponents = require('../../ReactMapComponents');
 var MapPropTypes = require('../MapPropTypes');
 var PropTypeUtils = require('../../utils/PropTypeUtils');
+var ReactFrag = require('./ReactFrag');
 
 var GoogleMapsMap = ReactMapComponents.Map;
 
@@ -51,20 +52,22 @@ var ReactMap = React.createClass({
 
     var map;
     if (this.state.mapLifeCycleState !== MapLifeCycle.CREATING_HOLDER) {
-      map = this.transferPropsTo(<GoogleMapsMap ref="map" mapDiv={this.refs.mapHolder.getDOMNode()} width={null} height={null} />);
+      map = this.transferPropsTo(
+        <GoogleMapsMap
+          ref="map"
+          mapDiv={this.refs.mapHolder.getDOMNode()}
+          width={null}
+          height={null} />
+      );
     }
 
-    // Check if there is an instance of a Google Map first
-    // Loop through each child adding the `this.__node` object
-    // to their props, this will allow the children to be injected
-    // into this map instance.
     var children;
     if (!this.state.mapLifeCycleState) {
-      var mapProps = {map: this.refs.map.__node};
-      children = React.Children
-        .map(this.props.children, function(child) {
-          return React.isValidComponent(child) ? cloneWithProps(child, mapProps) : child;
-        });
+      children = (
+        <ReactFrag map={this.refs.map.__node}>
+          {this.props.children}
+        </ReactFrag>
+      );
     }
 
     return (

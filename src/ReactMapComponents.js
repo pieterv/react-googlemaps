@@ -26,6 +26,7 @@ var ReactMapComponents = mapObject({
   Rectangle: null,
   Polygon: null
   // OverlayView: Note: Injected, see `ReactOverlayView`.
+  // Frag: Note: Injected, see `ReactFrag`.
 }, createMapComponentClass);
 
 var injection = {
