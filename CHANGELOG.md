@@ -1,7 +1,8 @@
-## next
+## 0.3.0
 
 - Removed `getNodeInterface` and added `getMapNode` which returns the real internal map class instance rather than an interface.
 - Added API docs and more detailed examples.
+- Added `Frag` component.
 
 ## 0.2.1
 
