@@ -39,7 +39,7 @@ var Marker = ReactGoogleMaps.Marker;
 var OverlayView = ReactGoogleMaps.OverlayView;
 
 function handleClick(e) {
-  console.log('Clicked at position', e.latlng);
+  console.log('Clicked at position', e.latLng);
 }
 
 React.renderComponent(
