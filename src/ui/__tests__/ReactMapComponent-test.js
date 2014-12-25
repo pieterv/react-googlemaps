@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 
 jest.dontMock('../ReactMapComponent');
 jest.mock('react');

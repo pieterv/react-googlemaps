@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 var React = require('react/addons');
@@ -60,4 +59,4 @@ var GoogleMapMarkers = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapMarkers />, document.getElementById('example'));
+React.render(<GoogleMapMarkers />, document.getElementById('example'));

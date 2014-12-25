@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 // This example creates an overlay view on the map.
@@ -49,4 +48,4 @@ var GoogleMapOverlayViewSimple = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapOverlayViewSimple />, document.getElementById('example'));
+React.render(<GoogleMapOverlayViewSimple />, document.getElementById('example'));

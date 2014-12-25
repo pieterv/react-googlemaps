@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 var React = require('react');
@@ -6,7 +5,7 @@ var cloneWithProps = require('react/lib/cloneWithProps');
 var MapPropTypes = require('../MapPropTypes');
 
 function injectMapInto(child) {
-  return React.isValidComponent(child) ?
+  return React.isValidElement(child) ?
     cloneWithProps(child, {map: this.props.map}) : child;
 }
 

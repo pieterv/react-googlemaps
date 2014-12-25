@@ -1,13 +1,14 @@
 "use strict";
 
-var merge = require('react/lib/merge');
+var assign = require('react/lib/Object.assign');
 var ReactDefaultInjection = require('./src/ui/ReactDefaultInjection');
 var ReactMapComponents = require('./src/ReactMapComponents');
 var MapPropTypes = require('./src/ui/MapPropTypes');
 
 ReactDefaultInjection.inject();
 
-module.exports = merge(
+module.exports = assign(
+  {},
   ReactMapComponents,
   {
     PropTypes: MapPropTypes
