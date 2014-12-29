@@ -1,6 +1,6 @@
 "use strict";
 
-var mergeInto = require('react/lib/mergeInto');
+var assign = require('react/lib/Object.assign');
 var mapObject = require('react/lib/mapObject');
 var GoogleMapsAPI = require('./GoogleMapsAPI');
 var ReactMapComponent = require('./ui/ReactMapComponent');
@@ -31,7 +31,7 @@ var ReactMapComponents = mapObject({
 
 var injection = {
   injectComponentClasses: function(componentClasses) {
-    mergeInto(ReactMapComponents, componentClasses);
+    assign(ReactMapComponents, componentClasses);
   }
 };
 

@@ -1,9 +1,8 @@
-/** @jsx React.DOM */
 "use strict";
 
 var React = require('react');
+var assign = require('react/lib/Object.assign');
 var cloneWithProps = require('react/lib/cloneWithProps');
-var merge = require('react/lib/merge');
 var GoogleMapsAPI = require('../../GoogleMapsAPI');
 var MapPropTypes = require('../MapPropTypes');
 
@@ -21,19 +20,19 @@ MapOverlayView.prototype.onAdd = function() {
 };
 
 MapOverlayView.prototype.draw = function() {
-  var props = merge(this.props, {position: null, mapPane: null});
+  var props = assign({}, this.props, {position: null, mapPane: null});
   if (this.props.position) {
     var point = this.getProjection()
       .fromLatLngToDivPixel(this.props.position);
 
-    props.style = merge({
+    props.style = assign({}, {
       position: 'absolute',
       left: point.x,
       top: point.y
     }, this.props.style);
   }
 
-  React.renderComponent(
+  React.render(
     cloneWithProps(<div />, props),
     this._containerElement
   )

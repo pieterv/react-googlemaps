@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 // This example creates an interactive map which constructs a
@@ -67,4 +66,4 @@ var GoogleMapPolylineComplex = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapPolylineComplex />, document.getElementById('example'));
+React.render(<GoogleMapPolylineComplex />, document.getElementById('example'));

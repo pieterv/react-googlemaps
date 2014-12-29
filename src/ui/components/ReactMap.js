@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 var React = require('react');
@@ -52,8 +51,9 @@ var ReactMap = React.createClass({
 
     var map;
     if (this.state.mapLifeCycleState !== MapLifeCycle.CREATING_HOLDER) {
-      map = this.transferPropsTo(
+      map = (
         <GoogleMapsMap
+          {...this.props}
           ref="map"
           mapDiv={this.refs.mapHolder.getDOMNode()}
           width={null}

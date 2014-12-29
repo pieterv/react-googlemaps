@@ -1,6 +1,6 @@
 "use strict";
 
-var merge = require('react/lib/merge');
+var assign = require('react/lib/Object.assign');
 var invariant = require('react/lib/invariant');
 var MapOption = require('./MapOption');
 var MapOptionConfig = require('./MapOptionConfig');
@@ -26,7 +26,7 @@ function noop() {}
  * GoogleMaps React component mixin
  */
 var ReactMapComponentMixin = {
-  propTypes: merge(MapOptionConfig.Options),
+  propTypes: assign({}, MapOptionConfig.Options),
 
   shouldComponentUpdate: function() {
     return this.__shouldComponentUpdate;

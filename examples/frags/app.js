@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 // This example creates a reusable react component made
@@ -98,4 +97,4 @@ var GoogleMapFrags = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapFrags />, document.getElementById('example'));
+React.render(<GoogleMapFrags />, document.getElementById('example'));

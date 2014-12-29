@@ -1,4 +1,3 @@
-/** @jsx React.DOM */
 "use strict";
 
 // This example creates draggable triangles on the map.
@@ -62,4 +61,4 @@ var GoogleMapPolygonDraggable = React.createClass({
   }
 });
 
-React.renderComponent(<GoogleMapPolygonDraggable />, document.getElementById('example'));
+React.render(<GoogleMapPolygonDraggable />, document.getElementById('example'));
