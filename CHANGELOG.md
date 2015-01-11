@@ -1,3 +1,7 @@
+## 0.4.0
+
+- Support for React 0.12.0.
+
 ## 0.3.0
 
 - Removed `getNodeInterface` and added `getMapNode` which returns the real internal map class instance rather than an interface.

@@ -42,7 +42,7 @@ function handleClick(e) {
   console.log('Clicked at position', e.latLng);
 }
 
-React.renderComponent(
+React.render(
   <Map
     initialZoom={10}
     initialCenter={new GoogleMapsAPI.LatLng(-41.2864, 174.7762)}>
