@@ -1,6 +1,6 @@
 "use strict";
 
-var invariant = require('react/lib/invariant');
+var invariant = require('invariant');
 
 invariant(
   window.google && window.google.maps,

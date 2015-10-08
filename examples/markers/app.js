@@ -1,6 +1,8 @@
 "use strict";
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
+var update = require('react-addons-update');
 var ReactGoogleMaps = require('../../');
 var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
@@ -43,8 +45,7 @@ var GoogleMapMarkers = React.createClass({
       position: mapEvent.latLng
     };
 
-    var markers = React.addons
-      .update(this.state.markers, {$push: [marker]});
+    var markers = update(this.state.markers, {$push: [marker]});
 
     this.setState({
       markers: markers,
@@ -59,4 +60,4 @@ var GoogleMapMarkers = React.createClass({
   }
 });
 
-React.render(<GoogleMapMarkers />, document.getElementById('example'));
+ReactDOM.render(<GoogleMapMarkers />, document.getElementById('example'));
