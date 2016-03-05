@@ -1,7 +1,7 @@
 "use strict";
 
 var assign = require('react/lib/Object.assign');
-var invariant = require('react/lib/invariant');
+var invariant = require('invariant');
 var MapOption = require('./MapOption');
 var MapOptionConfig = require('./MapOptionConfig');
 var MapEvent = require('./MapEvent');

@@ -5,6 +5,7 @@
 // its own state.
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactGoogleMaps = require('../../');
 var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
@@ -48,4 +49,4 @@ var GoogleMapOverlayViewSimple = React.createClass({
   }
 });
 
-React.render(<GoogleMapOverlayViewSimple />, document.getElementById('example'));
+ReactDOM.render(<GoogleMapOverlayViewSimple />, document.getElementById('example'));

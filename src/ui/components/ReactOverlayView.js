@@ -1,6 +1,7 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var assign = require('react/lib/Object.assign');
 var cloneWithProps = require('react/lib/cloneWithProps');
 var GoogleMapsAPI = require('../../GoogleMapsAPI');
@@ -32,8 +33,8 @@ MapOverlayView.prototype.draw = function() {
     }, this.props.style);
   }
 
-  React.render(
-    cloneWithProps(<div />, props),
+  ReactDOM.render(
+    React.cloneElement(<div />, props),
     this._containerElement
   )
 };

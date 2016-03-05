@@ -1,8 +1,9 @@
 "use strict";
 
 var React = require('react');
+var ReactDOM = require('react-dom');
 var cloneWithProps = require('react/lib/cloneWithProps');
-var keyMirror = require('react/lib/keyMirror');
+var keyMirror = require('fbjs/lib/keyMirror');
 var ReactMapComponents = require('../../ReactMapComponents');
 var MapPropTypes = require('../MapPropTypes');
 var PropTypeUtils = require('../../utils/PropTypeUtils');
@@ -55,7 +56,7 @@ var ReactMap = React.createClass({
         <GoogleMapsMap
           {...this.props}
           ref="map"
-          mapDiv={this.refs.mapHolder.getDOMNode()}
+          mapDiv={this.refs.mapHolder}
           width={null}
           height={null} />
       );
@@ -76,9 +77,8 @@ var ReactMap = React.createClass({
           ref="mapHolder"
           className={this.props.className}
           style={holderStyle} />
-
-        {map}
-        {children}
+          {map}
+          {children}
       </div>
       );
   }

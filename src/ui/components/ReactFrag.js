@@ -6,7 +6,7 @@ var MapPropTypes = require('../MapPropTypes');
 
 function injectMapInto(child) {
   return React.isValidElement(child) ?
-    cloneWithProps(child, {map: this.props.map}) : child;
+    React.cloneElement(child, {map: this.props.map}) : child;
 }
 
 var ReactFrag = React.createClass({

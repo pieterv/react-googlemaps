@@ -5,7 +5,8 @@
 // as you drag it north or south.
 // Based on: https://developers.google.com/maps/documentation/javascript/examples/polygon-draggable
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactGoogleMaps = require('../../');
 var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
@@ -61,4 +62,4 @@ var GoogleMapPolygonDraggable = React.createClass({
   }
 });
 
-React.render(<GoogleMapPolygonDraggable />, document.getElementById('example'));
+ReactDOM.render(<GoogleMapPolygonDraggable />, document.getElementById('example'));

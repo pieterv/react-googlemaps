@@ -25,13 +25,12 @@ describe('PropTypeUtils', function() {
       expect(validate(null, 'hi')).toEqual(jasmine.any(Error));
     });
 
-    it('Should return undefined with valid values', function() {
-      expect(validateRequired(10)).toBeUndefined();
-      expect(validateRequired(null, 10)).toBeUndefined();
-      expect(validateRequired(10, 'num')).toBeUndefined();
-      expect(validate()).toBeUndefined();
-      expect(validate(10)).toBeUndefined();
-      expect(validate(null, 10)).toBeUndefined();
+    it('Should return null with valid values', function() {
+      expect(validateRequired(10)).toBeNull();
+      expect(validateRequired(null, 10)).toBeNull();
+      expect(validateRequired(10, 'num')).toBeNull();
+      expect(validate(10)).toBeNull();
+      expect(validate(null, 10)).toBeNull();
     });
   });
 });

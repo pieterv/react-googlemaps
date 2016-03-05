@@ -1,6 +1,6 @@
 "use strict";
 
-var invariant = require('react/lib/invariant');
+var invariant = require('invariant');
 
 function createInitialOptionName(name) {
   return 'initial' + name.charAt(0).toUpperCase() + name.slice(1)

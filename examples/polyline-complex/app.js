@@ -5,7 +5,8 @@
 // once its path property contains two LatLng coordinates.
 // Based on: https://developers.google.com/maps/documentation/javascript/examples/polyline-complex
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactGoogleMaps = require('../../');
 var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
@@ -66,4 +67,4 @@ var GoogleMapPolylineComplex = React.createClass({
   }
 });
 
-React.render(<GoogleMapPolylineComplex />, document.getElementById('example'));
+ReactDOM.render(<GoogleMapPolylineComplex />, document.getElementById('example'));

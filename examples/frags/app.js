@@ -5,8 +5,10 @@
 // to add a new instance or drag the component to move
 // it around.
 
-var React = require('react/addons');
+var React = require('react');
+var ReactDOM = require('react-dom');
 var ReactGoogleMaps = require('../../');
+var update = require('react-addons-update');
 var GoogleMapsAPI = window.google.maps;
 var Map = ReactGoogleMaps.Map;
 var Circle = ReactGoogleMaps.Circle;
@@ -79,8 +81,7 @@ var GoogleMapFrags = React.createClass({
   },
 
   handleFaceDrag: function(i, e) {
-    var faces = React.addons
-      .update(this.state.faces, {$splice: [[i, 1, e.latLng]]});
+    var faces = update(this.state.faces, {$splice: [[i, 1, e.latLng]]});
 
     this.setState({
       faces: faces
@@ -97,4 +98,4 @@ var GoogleMapFrags = React.createClass({
   }
 });
 
-React.render(<GoogleMapFrags />, document.getElementById('example'));
+ReactDOM.render(<GoogleMapFrags />, document.getElementById('example'));
